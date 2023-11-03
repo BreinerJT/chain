@@ -1,10 +1,10 @@
 import { Icons } from '@/components/Icons'
-import { LandingLayout } from '@/components/layouts/LandingLayout'
+import { AppLayout } from '@/components/layouts/AppLayout'
 import { Button } from '@/components/ui/button'
 
 export default function Auth() {
 	return (
-		<LandingLayout>
+		<AppLayout>
 			<div className='container mx-auto'>
 				<div className='mt-16 grid items-center justify-center gap-8 px-4'>
 					<Button className='text-white' variant='ghost'>
@@ -15,6 +15,6 @@ export default function Auth() {
 					</Button>
 				</div>
 			</div>
-		</LandingLayout>
+		</AppLayout>
 	)
 }

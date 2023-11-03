@@ -3,12 +3,12 @@ import { signIn, signOut, useSession } from 'next-auth/react'
 
 import { buttonVariants } from '@/components/ui/button'
 import { Icons } from '@/components/Icons'
-import { LandingLayout } from '@/components/layouts/LandingLayout'
+import { AppLayout } from '@/components/layouts/AppLayout'
 import { api } from '@/utils/api'
 
 export default function Home() {
 	return (
-		<LandingLayout>
+		<AppLayout>
 			<div className='flex flex-col items-center justify-center	pb-20 pt-20'>
 				<h1 className='mb-2 text-3xl md:mb-5 md:text-6xl'>Chain</h1>
 				<h3 className='mb-2 text-2xl text-gray-400'>
@@ -30,7 +30,7 @@ export default function Home() {
 					</a>
 				</div>
 			</div>
-		</LandingLayout>
+		</AppLayout>
 	)
 }
 
