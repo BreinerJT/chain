@@ -20,7 +20,7 @@ export const ModeToggle = () => {
 					<span className='sr-only'>Toggle theme</span>
 				</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent align='end'>
+			<DropdownMenuContent align='end' className='dark:bg-[#121212]'>
 				<DropdownMenuItem onClick={() => setTheme('light')}>
 					<Icons.sun className='mr-2 h-4 w-4' />
 					<span>Light</span>
