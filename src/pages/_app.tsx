@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
 import { AppLayout } from '@/components/layouts/AppLayout'
 import { ThemeProvider } from 'next-themes'
+import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,6 +35,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
 						<Component {...pageProps} />
 					</AppLayout>
 				</main>
+				<Toaster />
 			</ThemeProvider>
 		</SessionProvider>
 	)
