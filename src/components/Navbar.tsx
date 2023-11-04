@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
-import { buttonVariants } from '@/components/ui/button'
 import { Icons } from '@/components/Icons'
-import { ModeToggle } from './ModeToggle'
+import { ModeToggle } from '@/components/ModeToggle'
+import { Authentication } from '@/components/Authentication'
 
 export const Navbar = () => {
 	return (
@@ -15,9 +15,7 @@ export const Navbar = () => {
 					</div>
 				</Link>
 				<div className='flex items-center space-x-6'>
-					<Link href='/auth' className={buttonVariants({ variant: 'ghost' })}>
-						Login
-					</Link>
+					<Authentication />
 					<ModeToggle />
 				</div>
 			</div>
