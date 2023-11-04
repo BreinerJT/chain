@@ -8,7 +8,7 @@ export const AppLayout = ({ children }: Props) => {
 	return (
 		<>
 			<Navbar />
-			{children}
+			<div className='min-h-auto'>{children}</div>
 		</>
 	)
 }
