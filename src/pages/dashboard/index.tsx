@@ -1,3 +1,6 @@
+import { GetServerSideProps } from 'next'
+
+import { getServerAuthSession } from '@/server/auth'
 import { DashboardShell } from '@/components/DashboardShell'
 import { LinkDetails } from '@/components/LinkDetails'
 import { Input } from '@/components/ui/input'
@@ -23,4 +26,21 @@ export default function DashboardPage() {
 			</div>
 		</DashboardShell>
 	)
+}
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+	const session = await getServerAuthSession(ctx)
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/auth',
+				permanent: false
+			}
+		}
+	}
+
+	return {
+		props: {}
+	}
 }

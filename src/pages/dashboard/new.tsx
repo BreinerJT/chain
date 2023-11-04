@@ -1,3 +1,6 @@
+import { GetServerSideProps } from 'next'
+
+import { getServerAuthSession } from '@/server/auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -37,4 +40,21 @@ export default function NewLinkPage() {
 			</div>
 		</div>
 	)
+}
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+	const session = await getServerAuthSession(ctx)
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/auth',
+				permanent: false
+			}
+		}
+	}
+
+	return {
+		props: {}
+	}
 }
