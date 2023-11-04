@@ -7,6 +7,8 @@ import { api } from '@/utils/api'
 import { cn } from '@/lib/utils'
 
 import '@/styles/globals.css'
+import { AppLayout } from '@/components/layouts/AppLayout'
+import { ThemeProvider } from 'next-themes'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,14 +18,23 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
 	return (
 		<SessionProvider session={session}>
-			<main
-				className={cn(
-					'min-h-screen bg-zinc-950 text-white antialiased',
-					inter.className
-				)}
+			<ThemeProvider
+				attribute='class'
+				defaultTheme='system'
+				enableSystem
+				disableTransitionOnChange
 			>
-				<Component {...pageProps} />
-			</main>
+				<main
+					className={cn(
+						'bg-foreground min-h-screen antialiased',
+						inter.className
+					)}
+				>
+					<AppLayout>
+						<Component {...pageProps} />
+					</AppLayout>
+				</main>
+			</ThemeProvider>
 		</SessionProvider>
 	)
 }
