@@ -1,3 +1,5 @@
+import { signIn } from 'next-auth/react'
+
 import { Icons } from '@/components/Icons'
 import { Button } from '@/components/ui/button'
 
@@ -8,7 +10,10 @@ export default function Auth() {
 				<Button variant='ghost'>
 					<Icons.gmail className='mr-2 h-5 w-5' /> Sign in with Gmail
 				</Button>
-				<Button variant='ghost'>
+				<Button
+					variant='ghost'
+					onClick={() => signIn('github', { callbackUrl: '/dashboard' })}
+				>
 					<Icons.github className='mr-2 h-5 w-5' /> Sign in with Github
 				</Button>
 			</div>
