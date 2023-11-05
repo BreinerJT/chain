@@ -1,5 +1,9 @@
 import { createTRPCRouter, protectedProcedure } from '@/server/api/trpc'
-import { CreateLinkSchema, GetLinkSchema } from '@/schemas/link.schema'
+import {
+	CreateLinkSchema,
+	EditLinkSchema,
+	GetLinkSchema
+} from '@/schemas/link.schema'
 
 export const linkRouter = createTRPCRouter({
 	create: protectedProcedure
@@ -10,6 +14,15 @@ export const linkRouter = createTRPCRouter({
 					...input,
 					creatorId: ctx.session.user.id
 				}
+			})
+		}),
+
+	update: protectedProcedure
+		.input(EditLinkSchema)
+		.mutation(async ({ ctx, input }) => {
+			return ctx.db.link.update({
+				where: { id: input.id },
+				data: input
 			})
 		}),
 
