@@ -45,36 +45,22 @@ export const Authentication = () => {
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger asChild>
+			<DropdownMenuTrigger>
 				<Button variant='ghost'>{session?.user.name}</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent align='center' className='dark:bg-[#121212]'>
-				<DropdownMenuItem>
-					<Link
-						href='/dashboard/new'
-						className={buttonVariants({
-							variant: 'ghost',
-							className: 'text-base'
-						})}
-					>
-						<Icons.plus className=' mr-2 h-4 w-4' /> Create new link
+			<DropdownMenuContent className='dark:bg-[#121212]'>
+				<DropdownMenuItem asChild>
+					<Link href='/dashboard/new'>
+						<Icons.plus className='mr-2 h-4 w-4' /> Create new link
 					</Link>
 				</DropdownMenuItem>
-				<DropdownMenuItem>
-					<Link
-						href='/dashboard'
-						className={buttonVariants({
-							variant: 'ghost',
-							className: 'text-base'
-						})}
-					>
-						<Icons.layout className=' mr-2 h-4 w-4' /> Dashboard
+				<DropdownMenuItem asChild>
+					<Link href='/dashboard'>
+						<Icons.layout className='mr-2 h-4 w-4' /> Dashboard
 					</Link>
 				</DropdownMenuItem>
-				<DropdownMenuItem>
-					<Button variant='ghost' onClick={handleLogout}>
-						<Icons.logout className=' mr-2 h-4 w-4' /> Sign out
-					</Button>
+				<DropdownMenuItem onClick={handleLogout}>
+					<Icons.logout className='mr-2 h-4 w-4' /> Sign out
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
