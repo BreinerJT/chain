@@ -9,20 +9,26 @@ import {
 	Moon,
 	MoreVertical,
 	Plus,
+	Link2Off,
 	Star,
 	Sun,
 	Trash2,
+	AlertCircle,
+	Share2,
 	type LucideProps
 } from 'lucide-react'
 
 export const Icons = {
+	share: Share2,
 	copy: Copy,
 	edit: Edit,
 	laptop: Laptop,
 	layout: LayoutDashboard,
+	linkOff: Link2Off,
 	loader: Loader2,
 	logo: Link,
 	logout: LogOut,
+	alertCircle: AlertCircle,
 	moon: Moon,
 	moreVertical: MoreVertical,
 	plus: Plus,
