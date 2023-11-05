@@ -35,3 +35,7 @@ export const EditLinkSchema = z.object({
 export const GetLinkSchema = z.object({
 	id: z.number()
 })
+
+export const FilterLinksSchema = z.object({
+	filter: z.string()
+})
