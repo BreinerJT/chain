@@ -2,6 +2,7 @@ import { createTRPCRouter, protectedProcedure } from '@/server/api/trpc'
 import {
 	CreateLinkSchema,
 	EditLinkSchema,
+	FilterLinksSchema,
 	GetLinkSchema
 } from '@/schemas/link.schema'
 
@@ -39,12 +40,39 @@ export const linkRouter = createTRPCRouter({
 			})
 		}),
 
-	getAll: protectedProcedure.query(({ ctx }) => {
-		return ctx.db.link.findMany({
-			orderBy: { createdAt: 'desc' },
-			where: { createdBy: { id: ctx.session.user.id } }
-		})
-	}),
+	getAll: protectedProcedure
+		.input(FilterLinksSchema)
+		.query(({ ctx, input }) => {
+			return ctx.db.link.findMany({
+				orderBy: { createdAt: 'desc' },
+				where: {
+					creatorId: ctx.session.user.id,
+					AND: input.filter
+						? [
+								{
+									OR: [
+										{
+											url: {
+												contains: input.filter
+											}
+										},
+										{
+											slug: {
+												contains: input.filter
+											}
+										},
+										{
+											description: {
+												contains: input.filter
+											}
+										}
+									]
+								}
+						  ]
+						: undefined
+				}
+			})
+		}),
 
 	getSecretMessage: protectedProcedure.query(() => {
 		return 'you can now see this secret message!'
