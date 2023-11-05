@@ -9,9 +9,19 @@ import { Icons } from '@/components/Icons'
 import { buttonVariants } from '@/components/ui/button'
 import Link from 'next/link'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { useState } from 'react'
+import { useDebounce } from '@/hooks/useDebounce'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 export default function DashboardPage() {
-	const { data: links, error, isLoading } = api.link.getAll.useQuery()
+	const [value, setValue] = useState('')
+	const debouncedFilter = useDebounce(value, 500)
+
+	const {
+		data: links,
+		error,
+		isLoading
+	} = api.link.getAll.useQuery({ filter: debouncedFilter })
 
 	if (error) {
 		return (
@@ -27,18 +37,19 @@ export default function DashboardPage() {
 		<DashboardShell>
 			<div className='container mx-auto mt-6'>
 				<div className='grid gap-6'>
-					{!isLoading && links && links.length !== 0 && (
-						<Input
-							placeholder='Search your link here'
-							className='dark:bg-zinc-900'
-						/>
-					)}
+					<Input
+						placeholder='Search your link here'
+						className='dark:bg-zinc-900'
+						onChange={e => setValue(e.target.value)}
+						value={value}
+					/>
 					{isLoading && (
 						<div className='mt-8 flex flex-col items-center justify-center'>
 							<p className='mb-4'>Loading links...</p>
 							<Icons.loader className='mr-2 h-6 w-6 animate-spin' />
 						</div>
 					)}
+
 					{links?.length === 0 && (
 						<div className='flex flex-col items-center justify-center space-y-8'>
 							<p className='text-2xl'>This is kind of empty.</p>
