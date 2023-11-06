@@ -22,6 +22,7 @@ import {
 	CardTitle
 } from '@/components/ui/card'
 import { Link } from '@/interfaces/link'
+import NextLink from 'next/link'
 
 export const LinkDetails = ({ description, slug, url, id }: Link) => {
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
@@ -33,7 +34,11 @@ export const LinkDetails = ({ description, slug, url, id }: Link) => {
 			<div className='truncate'>
 				<CardHeader>
 					<CardTitle>
-						<a href=''>{`/r/${slug}`}</a>
+						<NextLink
+							href={`${window.location.origin}/r/${slug}`}
+							rel='noopener'
+							target='_blank'
+						>{`/r/${slug}`}</NextLink>
 					</CardTitle>
 					<CardDescription>{url}</CardDescription>
 				</CardHeader>
