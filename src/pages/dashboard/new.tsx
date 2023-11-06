@@ -1,9 +1,10 @@
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/navigation'
 
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { nanoid } from 'nanoid'
+import { z } from 'zod'
 
 import { getServerAuthSession } from '@/server/auth'
 import { Button } from '@/components/ui/button'
@@ -19,7 +20,7 @@ type NewLinkForm = z.infer<typeof CreateLinkSchema>
 export default function NewLinkPage() {
 	const router = useRouter()
 	const { toast } = useToast()
-	const { register, handleSubmit, setError } = useForm<NewLinkForm>({
+	const { register, handleSubmit, setError, setValue } = useForm<NewLinkForm>({
 		resolver: zodResolver(CreateLinkSchema)
 	})
 	const { mutate, isLoading } = api.link.create.useMutation({
@@ -55,6 +56,11 @@ export default function NewLinkPage() {
 		mutate(data)
 	}
 
+	const onGenerateRandomId = () => {
+		const randomId = nanoid(6)
+		setValue('slug', randomId)
+	}
+
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
@@ -71,12 +77,21 @@ export default function NewLinkPage() {
 			</div>
 			<div className='grid gap-4'>
 				<Label htmlFor='slug'>Custom slug</Label>
-				<Input
-					placeholder='Custom slug'
-					className='dark:bg-zinc-900'
-					id='slug'
-					{...register('slug')}
-				/>
+				<div className='flex items-center space-x-2'>
+					<Input
+						placeholder='Custom slug'
+						className='dark:bg-zinc-900'
+						id='slug'
+						{...register('slug')}
+					/>
+					<Button
+						type='button'
+						variant='secondary'
+						onClick={onGenerateRandomId}
+					>
+						Randomize
+					</Button>
+				</div>
 			</div>
 			<div className='grid gap-4'>
 				<Label htmlFor='description'>Description (Optional)</Label>

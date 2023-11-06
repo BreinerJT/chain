@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { nanoid } from 'nanoid'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -133,7 +134,7 @@ export const EditDialog = ({
 	url,
 	closeModal
 }: EditDialogProps) => {
-	const { handleSubmit, register, setError } = useForm<EditLinkForm>({
+	const { handleSubmit, register, setError, setValue } = useForm<EditLinkForm>({
 		defaultValues: {
 			description,
 			slug,
@@ -162,6 +163,11 @@ export const EditDialog = ({
 			})
 		}
 	})
+
+	const onGenerateRandomId = () => {
+		const randomId = nanoid(6)
+		setValue('slug', randomId)
+	}
 
 	const onSubmit = (data: EditLinkForm) => {
 		if (data.slug === data.url) {
@@ -203,12 +209,21 @@ export const EditDialog = ({
 				</div>
 				<div className='grid gap-4'>
 					<Label htmlFor='slug'>Custom slug</Label>
-					<Input
-						placeholder='Custom slug'
-						className='dark:bg-zinc-900'
-						id='slug'
-						{...register('slug')}
-					/>
+					<div className='flex items-center space-x-2'>
+						<Input
+							placeholder='Custom slug'
+							className='dark:bg-zinc-900'
+							id='slug'
+							{...register('slug')}
+						/>
+						<Button
+							type='button'
+							variant='secondary'
+							onClick={onGenerateRandomId}
+						>
+							Randomize
+						</Button>
+					</div>
 				</div>
 				<div className='grid gap-4'>
 					<Label htmlFor='description'>Description (Optional)</Label>
