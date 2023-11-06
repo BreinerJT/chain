@@ -1,18 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server'
 
-import { getToken } from 'next-auth/jwt'
-
 export async function middleware(req: NextRequest) {
-	const session = await getToken({ req })
-
-	const isAuthPage = req.nextUrl.pathname.startsWith('/auth')
-
-	if (isAuthPage) {
-		if (session) {
-			return NextResponse.redirect(new URL('/dashboard', req.url))
-		}
-	}
-
 	const isSlugPage = req.nextUrl.pathname.startsWith('/r')
 
 	if (isSlugPage) {
@@ -34,5 +22,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-	matcher: ['/auth', '/r/:slug*']
+	matcher: ['/r/:slug*']
 }
