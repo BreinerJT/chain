@@ -1,17 +1,16 @@
+import { useState } from 'react'
 import { GetServerSideProps } from 'next'
+import Link from 'next/link'
 
-import { getServerAuthSession } from '@/server/auth'
 import { DashboardShell } from '@/components/DashboardShell'
-import { LinkDetails } from '@/components/LinkDetails'
 import { Input } from '@/components/ui/input'
-import { api } from '@/utils/api'
+import { LinkDetails } from '@/components/LinkDetails'
 import { Icons } from '@/components/Icons'
 import { buttonVariants } from '@/components/ui/button'
-import Link from 'next/link'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { useState } from 'react'
 import { useDebounce } from '@/hooks/useDebounce'
-import { ScrollArea } from '@/components/ui/scroll-area'
+import { api } from '@/utils/api'
+import { getServerAuthSession } from '@/server/auth'
 
 export default function DashboardPage() {
 	const [value, setValue] = useState('')
