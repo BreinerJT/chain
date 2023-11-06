@@ -1,17 +1,26 @@
-import { Inter } from 'next/font/google'
+import { type AppType } from 'next/app'
+import { Inter as FontSans } from 'next/font/google'
+import localFont from 'next/font/local'
+
 import { type Session } from 'next-auth'
 import { SessionProvider } from 'next-auth/react'
-import { type AppType } from 'next/app'
+import { ThemeProvider } from 'next-themes'
 
+import { AppLayout } from '@/components/layouts/AppLayout'
+import { Toaster } from '@/components/ui/toaster'
 import { api } from '@/utils/api'
 import { cn } from '@/lib/utils'
-
 import '@/styles/globals.css'
-import { AppLayout } from '@/components/layouts/AppLayout'
-import { ThemeProvider } from 'next-themes'
-import { Toaster } from '@/components/ui/toaster'
 
-const inter = Inter({ subsets: ['latin'] })
+const fontHeading = localFont({
+	src: '../../public/assets/fonts/CalSans-SemiBold.woff2',
+	variable: '--font-heading'
+})
+
+export const fontSans = FontSans({
+	subsets: ['latin'],
+	variable: '--font-sans'
+})
 
 const MyApp: AppType<{ session: Session | null }> = ({
 	Component,
@@ -27,8 +36,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
 			>
 				<main
 					className={cn(
-						'bg-foreground min-h-screen antialiased',
-						inter.className
+						'bg-foreground min-h-screen font-sans antialiased',
+						fontSans.variable,
+						fontHeading.variable
 					)}
 				>
 					<AppLayout>
