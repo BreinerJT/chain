@@ -45,7 +45,7 @@ export const Authentication = () => {
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger>
+			<DropdownMenuTrigger asChild>
 				<Button variant='ghost'>{session?.user.name}</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className='dark:bg-[#121212]'>
