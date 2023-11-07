@@ -1,30 +1,48 @@
 import Link from 'next/link'
 
 import { buttonVariants } from '@/components/ui/button'
-import { Icons } from '@/components/Icons'
+import { OpenSource } from '@/components/OpenSource'
+import { Footer } from '@/components/ui/Footer'
+import { siteConfig } from '@/config/site'
+import { cn } from '@/lib/utils'
 
 export default function Home() {
 	return (
-		<div className='flex flex-col items-center justify-center	pb-20 pt-20'>
-			<h1 className='mb-2 text-3xl md:mb-5 md:text-6xl'>Chain</h1>
-			<h3 className='mb-2 text-2xl text-gray-400'>
-				Short URLs and custom slugs
-			</h3>
-			<h4 className='text-2xl text-gray-400'>Totally open source</h4>
-			<div className='mt-6 flex items-center'>
-				<Link href='/auth' className={buttonVariants({ variant: 'ghost' })}>
-					Get started
-				</Link>
-				<a
-					href='https://github.com/BreinerJT/chain'
-					target='_blank'
-					rel='noreferrer'
-					className={buttonVariants({ variant: 'ghost' })}
-				>
-					<Icons.star className='mr-2 h-4 w-4' />
-					Star on Github
-				</a>
+		<>
+			<div className='container mx-auto flex max-w-[64rem] flex-col items-center gap-4 pb-20 pt-20 text-center'>
+				<h1 className='font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl'>
+					{siteConfig.description}
+				</h1>
+				<div className='font-heading hidden md:block'>
+					<h3 className='scroll-m-20 text-2xl font-semibold tracking-tight'>
+						From
+					</h3>
+					<small className='font-sans text-sm font-medium leading-none tracking-wider opacity-80'>
+						https://www.thisIsAnIncrediblyLongAndComplicatedUrl.com
+					</small>
+					<h3 className='scroll-m-20 text-2xl font-semibold tracking-tight'>
+						To
+					</h3>
+					<small className='font-sans text-sm font-medium leading-none tracking-wider opacity-80'>
+						{siteConfig.url}/r/EasySlug
+					</small>
+				</div>
+				<div className='mt-6 space-x-4'>
+					<Link href='/auth' className={cn(buttonVariants({ size: 'lg' }))}>
+						Get Started
+					</Link>
+					<Link
+						href={siteConfig.links.github}
+						target='_blank'
+						rel='noreferrer'
+						className={cn(buttonVariants({ variant: 'secondary', size: 'lg' }))}
+					>
+						GitHub
+					</Link>
+				</div>
 			</div>
-		</div>
+			<OpenSource />
+			<Footer />
+		</>
 	)
 }
