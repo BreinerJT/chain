@@ -10,6 +10,7 @@ import {
 	DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { useToast } from '@/components/ui/use-toast'
+import { cn } from '@/lib/utils'
 
 export const Authentication = () => {
 	const { data: session, status } = useSession()
@@ -37,7 +38,10 @@ export const Authentication = () => {
 
 	if (status === 'unauthenticated') {
 		return (
-			<Link href='/auth' className={buttonVariants({ variant: 'ghost' })}>
+			<Link
+				href='/auth'
+				className={cn(buttonVariants({ variant: 'secondary' }))}
+			>
 				Login
 			</Link>
 		)
