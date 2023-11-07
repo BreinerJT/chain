@@ -11,7 +11,7 @@ export const DashboardShell = ({ children }: Props) => {
 		<>
 			<div className='border-b-2 border-zinc-800'>
 				<div className='container mx-auto flex items-center justify-between pb-3 pl-4 pr-4'>
-					<h1 className='text-2xl'>Dashboard</h1>
+					<h1 className='font-heading text-2xl'>Dashboard</h1>
 					<Link
 						href='/dashboard/new'
 						className={buttonVariants({
