@@ -35,9 +35,10 @@ export const LinkDetails = ({ description, slug, url, id }: Link) => {
 				<CardHeader>
 					<CardTitle>
 						<NextLink
-							href={`${window.location.origin}/r/${slug}`}
+							href={url}
 							rel='noopener'
 							target='_blank'
+							className='font-heading'
 						>{`/r/${slug}`}</NextLink>
 					</CardTitle>
 					<CardDescription>{url}</CardDescription>
