@@ -51,7 +51,7 @@ export default function DashboardPage() {
 
 					{links?.length === 0 && (
 						<div className='flex flex-col items-center justify-center space-y-8'>
-							<p className='text-2xl'>This is kind of empty.</p>
+							<p className='font-heading text-4xl'>This is kind of empty.</p>
 							<Icons.linkOff className='h-20 w-20' />
 							<Link
 								href='/dashboard/new'
