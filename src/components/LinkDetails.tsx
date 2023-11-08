@@ -59,7 +59,7 @@ export const LinkDetails = ({ description, slug, url, id }: Link) => {
 										<span className='sr-only'>Link options</span>
 									</Button>
 								</DropdownMenuTrigger>
-								<DropdownMenuContent align='end' className='dark:bg-[#121212]'>
+								<DropdownMenuContent align='end'>
 									<DropdownMenuItem onClick={() => setIsShareDialogOpen(true)}>
 										<Icons.share className='mr-2 h-4 w-4' />
 										<span>Share</span>

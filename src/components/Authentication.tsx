@@ -52,7 +52,7 @@ export const Authentication = () => {
 			<DropdownMenuTrigger asChild>
 				<Button variant='ghost'>{session?.user.name}</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent className='dark:bg-[#121212]'>
+			<DropdownMenuContent>
 				<DropdownMenuItem asChild>
 					<Link href='/dashboard/new'>
 						<Icons.plus className='mr-2 h-4 w-4' /> Create new link

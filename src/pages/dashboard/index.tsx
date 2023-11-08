@@ -35,7 +35,7 @@ export default function DashboardPage() {
 	return (
 		<DashboardShell>
 			<div className='container mx-auto mt-6'>
-				<div className='grid gap-6'>
+				<div className='grid gap-6 pb-5'>
 					<Input
 						placeholder='Search your link here'
 						className='dark:bg-zinc-900'
