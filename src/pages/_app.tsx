@@ -34,10 +34,17 @@ const MyApp: AppType<{ session: Session | null }> = ({
 				enableSystem
 				disableTransitionOnChange
 			>
+				<style
+					dangerouslySetInnerHTML={{
+						__html: `
+        :root {
+          --font-sans: ${fontSans.style.fontFamily};
+        }`
+					}}
+				/>
 				<main
 					className={cn(
-						'bg-foreground min-h-screen font-sans antialiased',
-						fontSans.variable,
+						'bg-background min-h-screen font-sans antialiased',
 						fontHeading.variable
 					)}
 				>
