@@ -34,7 +34,7 @@ export const ShareDialog = ({ slug }: { slug: string }) => {
 	}
 
 	return (
-		<DialogContent className='sm:max-w-md'>
+		<DialogContent className='max-w-[300px] sm:max-w-md'>
 			<DialogHeader>
 				<DialogTitle>Share link</DialogTitle>
 				<DialogDescription>
@@ -55,13 +55,16 @@ export const ShareDialog = ({ slug }: { slug: string }) => {
 				<Button
 					type='submit'
 					size='sm'
-					className='px-3'
+					className='hidden px-3 sm:flex'
 					onClick={onCopyToClipboard}
 				>
 					<span className='sr-only'>Copy</span>
 					<Icons.copy className='h-4 w-4' />
 				</Button>
 			</div>
+			<Button type='submit' className='sm:hidden' onClick={onCopyToClipboard}>
+				Copy it
+			</Button>
 			<DialogFooter>
 				<DialogClose asChild>
 					<Button type='button' variant='secondary'>
@@ -97,7 +100,7 @@ export const DeleteDialog = ({ slug, id }: { slug: string; id: number }) => {
 	})
 
 	return (
-		<DialogContent>
+		<DialogContent className='max-w-[300px] sm:max-w-[425px]'>
 			<DialogHeader>
 				<DialogTitle>
 					Do you want to delete <code>/r/{slug}</code>?
@@ -105,7 +108,11 @@ export const DeleteDialog = ({ slug, id }: { slug: string; id: number }) => {
 				<DialogDescription>This action cannot be undone.</DialogDescription>
 			</DialogHeader>
 			<DialogFooter>
-				<Button onClick={() => mutate({ id })} type='button'>
+				<Button
+					className='mt-2 sm:mt-0'
+					onClick={() => mutate({ id })}
+					type='button'
+				>
 					Confirm
 				</Button>
 				<DialogClose asChild>
@@ -187,7 +194,7 @@ export const EditDialog = ({
 	}
 
 	return (
-		<DialogContent className='sm:max-w-[425px]'>
+		<DialogContent className='max-w-[300px] sm:max-w-[425px]'>
 			<DialogHeader>
 				<DialogTitle>Edit /r/{slug}</DialogTitle>
 				<DialogDescription>
@@ -196,7 +203,7 @@ export const EditDialog = ({
 			</DialogHeader>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className='container mx-auto mt-4 grid gap-8 px-4'
+				className='mt-4 grid gap-8 sm:container sm:mx-auto sm:px-4'
 			>
 				<div className='grid gap-4'>
 					<Label htmlFor='url'>URL</Label>
@@ -220,8 +227,18 @@ export const EditDialog = ({
 							type='button'
 							variant='secondary'
 							onClick={onGenerateRandomId}
+							className='hidden sm:flex'
 						>
 							Randomize
+						</Button>
+						<Button
+							type='button'
+							size='icon'
+							variant='secondary'
+							onClick={onGenerateRandomId}
+							className='sm:hidden'
+						>
+							<Icons.random />
 						</Button>
 					</div>
 				</div>
