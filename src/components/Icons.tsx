@@ -1,25 +1,26 @@
 import {
+	AlertCircle,
 	Copy,
 	Edit,
 	Laptop,
 	LayoutDashboard,
 	Link,
+	Link2Off,
 	Loader2,
 	LogOut,
 	Moon,
 	MoreVertical,
 	Plus,
-	Link2Off,
+	Share2,
+	Shuffle,
 	Star,
 	Sun,
 	Trash2,
-	AlertCircle,
-	Share2,
 	type LucideProps
 } from 'lucide-react'
 
 export const Icons = {
-	share: Share2,
+	alertCircle: AlertCircle,
 	copy: Copy,
 	edit: Edit,
 	laptop: Laptop,
@@ -28,10 +29,11 @@ export const Icons = {
 	loader: Loader2,
 	logo: Link,
 	logout: LogOut,
-	alertCircle: AlertCircle,
 	moon: Moon,
 	moreVertical: MoreVertical,
 	plus: Plus,
+	random: Shuffle,
+	share: Share2,
 	sun: Sun,
 	trash: Trash2,
 	github: (props: LucideProps) => (
