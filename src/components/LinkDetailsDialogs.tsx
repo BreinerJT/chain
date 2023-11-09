@@ -198,7 +198,7 @@ export const EditDialog = ({
 			<DialogHeader>
 				<DialogTitle>Edit /r/{slug}</DialogTitle>
 				<DialogDescription>
-					Make changes to your link here. Click save when you're done.
+					Make changes to your link here. Click save when you&rsquo;re done.
 				</DialogDescription>
 			</DialogHeader>
 			<form

@@ -1,9 +1,3 @@
-import Link from 'next/link'
-
-import { buttonVariants } from '@/components/ui/button'
-import { Icons } from '@/components/Icons'
-import { cn } from '@/lib/utils'
-
 interface Props {
 	children: React.ReactNode
 }

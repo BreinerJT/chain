@@ -18,6 +18,7 @@ import { db } from '@/server/db'
  * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
  */
 declare module 'next-auth' {
+	// eslint-disable-next-line no-unused-vars
 	interface Session extends DefaultSession {
 		user: DefaultSession['user'] & {
 			id: string
