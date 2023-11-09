@@ -11,6 +11,8 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useDebounce } from '@/hooks/useDebounce'
 import { api } from '@/utils/api'
 import { getServerAuthSession } from '@/server/auth'
+import { LinkDetailsSkeleton } from '@/components/LinkDetailsSkeleton'
+import { cn } from '@/lib/utils'
 
 export default function DashboardPage() {
 	const [value, setValue] = useState('')
@@ -34,24 +36,54 @@ export default function DashboardPage() {
 
 	return (
 		<DashboardShell>
-			<div className='container mx-auto mt-6'>
-				<div className='grid gap-6 pb-5'>
-					<Input
-						placeholder='Search your link here'
-						className='dark:bg-zinc-900'
-						onChange={e => setValue(e.target.value)}
-						value={value}
-					/>
+			<div className='md:container md:mx-auto'>
+				<div className='grid gap-4 pb-4'>
+					<div className='flex- col	flex items-center space-x-2 border-b-2 border-foreground pb-4 md:flex-row md:space-x-6'>
+						<Input
+							placeholder='Search your link here'
+							onChange={e => setValue(e.target.value)}
+							value={value}
+						/>
+						<div className='hidden md:block'>
+							<Link
+								href='/dashboard/new'
+								className={cn(
+									buttonVariants({
+										variant: 'secondary'
+									})
+								)}
+							>
+								<Icons.plus className='mr-2 h-4 w-4' /> Create new link
+							</Link>
+						</div>
+						<div className='md:hidden'>
+							<Link
+								href='/dashboard/new'
+								className={cn(
+									buttonVariants({
+										variant: 'secondary',
+										size: 'icon'
+									})
+								)}
+							>
+								<Icons.plus className='h-4 w-4' />
+							</Link>
+						</div>
+					</div>
+
 					{isLoading && (
-						<div className='mt-8 flex flex-col items-center justify-center'>
-							<p className='mb-4'>Loading links...</p>
-							<Icons.loader className='mr-2 h-6 w-6 animate-spin' />
+						<div className='mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3'>
+							{Array.from({ length: 6 }).map((_, i) => (
+								<LinkDetailsSkeleton key={i} />
+							))}
 						</div>
 					)}
 
 					{links?.length === 0 && (
-						<div className='flex flex-col items-center justify-center space-y-8'>
-							<p className='font-heading text-4xl'>This is kind of empty.</p>
+						<div className='mt-5 flex flex-col items-center justify-center space-y-4 md:space-y-8'>
+							<p className='text-center font-heading text-4xl'>
+								This is kind of empty.
+							</p>
 							<Icons.linkOff className='h-20 w-20' />
 							<Link
 								href='/dashboard/new'
@@ -59,12 +91,13 @@ export default function DashboardPage() {
 									variant: 'default'
 								})}
 							>
-								<Icons.plus className=' mr-2 h-4 w-4' /> Add your first link
+								<Icons.plus className=' mr-2 h-4 w-4' /> Add a new link
 							</Link>
 						</div>
 					)}
+
 					{links && (
-						<div className='mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3'>
+						<div className='grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3'>
 							{links.map(link => (
 								<LinkDetails
 									key={link.id}

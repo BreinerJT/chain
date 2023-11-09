@@ -13,7 +13,7 @@ export default function Home() {
 				<h1 className='font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl'>
 					{siteConfig.description}
 				</h1>
-				<div className='font-heading hidden md:block'>
+				<div className='hidden font-heading md:block'>
 					<h3 className='scroll-m-20 text-2xl font-semibold tracking-tight'>
 						From
 					</h3>
@@ -27,7 +27,7 @@ export default function Home() {
 						{siteConfig.url}/r/EasySlug
 					</small>
 				</div>
-				<div className='mt-6 space-x-4'>
+				<div className='mt-6 flex flex-col justify-center space-y-2 md:flex-row md:space-x-4 md:space-y-0'>
 					<Link href='/auth' className={cn(buttonVariants({ size: 'lg' }))}>
 						Get Started
 					</Link>
