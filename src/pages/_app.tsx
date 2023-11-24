@@ -1,6 +1,7 @@
 import { type AppType } from 'next/app'
 import { Inter as FontSans } from 'next/font/google'
 import localFont from 'next/font/local'
+import { Analytics } from '@vercel/analytics/react'
 
 import { type Session } from 'next-auth'
 import { SessionProvider } from 'next-auth/react'
@@ -44,12 +45,13 @@ const MyApp: AppType<{ session: Session | null }> = ({
 				/>
 				<main
 					className={cn(
-						'bg-background min-h-screen font-sans antialiased',
+						'min-h-screen bg-background font-sans antialiased',
 						fontHeading.variable
 					)}
 				>
 					<AppLayout>
 						<Component {...pageProps} />
+						<Analytics />
 					</AppLayout>
 				</main>
 				<Toaster />
