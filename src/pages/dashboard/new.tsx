@@ -4,21 +4,18 @@ import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { nanoid } from 'nanoid'
-import { z } from 'zod'
 
 import { getServerAuthSession } from '@/server/auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { CreateLinkSchema } from '@/schemas/link.schema'
+import { CreateLinkSchema, NewLinkForm } from '@/schemas/link.schema'
 import { api } from '@/utils/api'
 import { useToast } from '@/components/ui/use-toast'
 import { DashboardShell } from '@/components/DashboardShell'
 import { Icons } from '@/components/Icons'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-
-type NewLinkForm = z.infer<typeof CreateLinkSchema>
 
 export default function NewLinkPage() {
 	const router = useRouter()

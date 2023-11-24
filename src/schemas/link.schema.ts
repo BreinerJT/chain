@@ -1,5 +1,8 @@
 import z from 'zod'
 
+export type EditLinkForm = z.infer<typeof CreateLinkSchema>
+export type NewLinkForm = z.infer<typeof CreateLinkSchema>
+
 export const LinkSchema = z.object({
 	id: z.number(),
 	url: z.string(),

@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { nanoid } from 'nanoid'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 
 import { Icons } from '@/components/Icons'
 import { Button } from '@/components/ui/button'
@@ -18,7 +17,7 @@ import { useToast } from '@/components/ui/use-toast'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Link } from '@/interfaces/link'
-import { CreateLinkSchema } from '@/schemas/link.schema'
+import { CreateLinkSchema, EditLinkForm } from '@/schemas/link.schema'
 import { api } from '@/utils/api'
 import { copyToClipboard } from '@/utils/copyToClipboard'
 
@@ -125,7 +124,6 @@ export const DeleteDialog = ({ slug, id }: { slug: string; id: number }) => {
 	)
 }
 
-type EditLinkForm = z.infer<typeof CreateLinkSchema>
 interface EditDialogProps {
 	description: Link['description']
 	id: Link['id']
