@@ -8,7 +8,10 @@ export const LinkSchema = z.object({
 })
 
 export const CreateLinkSchema = z.object({
-	url: z.string().min(1, 'Url is required.').url('Enter a valid url.'),
+	url: z
+		.string()
+		.min(1, 'URL is required.')
+		.url('Remember URLs must start with https://'),
 	slug: z
 		.string()
 		.min(1, 'Slug is required.')
@@ -21,7 +24,7 @@ export const CreateLinkSchema = z.object({
 
 export const EditLinkSchema = z.object({
 	id: z.number(),
-	url: z.string().min(1, 'Url is required.').url('Enter a valid url.'),
+	url: z.string().min(1, 'URL is required.').url('Enter a valid URL.'),
 	slug: z
 		.string()
 		.min(1, 'Slug is required.')
