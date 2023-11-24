@@ -18,7 +18,7 @@ export default function Auth() {
 					variant='ghost'
 					onClick={() => {
 						setIsGoogleLoading(true)
-						signIn('google', { callbackUrl: '/dashboard' })
+						signIn('google')
 					}}
 				>
 					{isGoogleLoading ? (
@@ -32,7 +32,7 @@ export default function Auth() {
 					variant='ghost'
 					onClick={() => {
 						setIsGitHubLoading(true)
-						signIn('github', { callbackUrl: '/dashboard' })
+						signIn('github')
 					}}
 				>
 					{isGitHubLoading ? (
