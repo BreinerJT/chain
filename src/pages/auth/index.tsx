@@ -6,6 +6,7 @@ import { signIn } from 'next-auth/react'
 import { Icons } from '@/components/Icons'
 import { Button } from '@/components/ui/button'
 import { getServerAuthSession } from '@/server/auth'
+import { cn } from '@/lib/utils'
 
 export default function Auth() {
 	const [isGoogleLoading, setIsGoogleLoading] = useState(false)
@@ -29,7 +30,7 @@ export default function Auth() {
 						</span>
 					</div>
 				</div>
-				<div>
+				<div className='grid gap-6'>
 					<Button
 						type='button'
 						disabled={isGoogleLoading || isGitHubLoading}
