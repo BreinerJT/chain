@@ -63,7 +63,7 @@ export const ShareDialog = ({ slug }: { slug: string }) => {
 				</Button>
 			</div>
 			<Button type='submit' className='sm:hidden' onClick={onCopyToClipboard}>
-				Copy it
+				Copy link
 			</Button>
 			<DialogFooter>
 				<DialogClose asChild>
