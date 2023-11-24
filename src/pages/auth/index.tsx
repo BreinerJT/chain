@@ -12,36 +12,57 @@ export default function Auth() {
 	const [isGitHubLoading, setIsGitHubLoading] = useState(false)
 
 	return (
-		<div className='container mx-auto'>
-			<div className='mt-16 grid items-center justify-center gap-8 px-4'>
-				<Button
-					variant='ghost'
-					onClick={() => {
-						setIsGoogleLoading(true)
-						signIn('google')
-					}}
-				>
-					{isGoogleLoading ? (
-						<Icons.loader className='mr-2 h-5 w-5 animate-spin' />
-					) : (
-						<Icons.gmail className='mr-2 h-5 w-5' />
-					)}
-					Sign in with Gmail
-				</Button>
-				<Button
-					variant='ghost'
-					onClick={() => {
-						setIsGitHubLoading(true)
-						signIn('github')
-					}}
-				>
-					{isGitHubLoading ? (
-						<Icons.loader className='mr-2 h-5 w-5 animate-spin' />
-					) : (
-						<Icons.github className='mr-2 h-5 w-5' />
-					)}
-					Sign in with Github
-				</Button>
+		<div className='lg:p-8'>
+			<div className='mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]'>
+				<div className='flex flex-col space-y-2 text-center'>
+					<h1 className='font-mono text-2xl font-semibold tracking-wide'>
+						Welcome back
+					</h1>
+				</div>
+				<div className='relative'>
+					<div className='absolute inset-0 flex items-center'>
+						<span className='w-full border-t' />
+					</div>
+					<div className='relative flex justify-center text-xs uppercase'>
+						<span className='bg-background px-2 text-muted-foreground'>
+							Continue with
+						</span>
+					</div>
+				</div>
+				<div>
+					<Button
+						type='button'
+						disabled={isGoogleLoading || isGitHubLoading}
+						variant='ghost'
+						onClick={() => {
+							setIsGoogleLoading(true)
+							signIn('google')
+						}}
+					>
+						{isGoogleLoading ? (
+							<Icons.loader className='mr-2 h-4 w-4 animate-spin' />
+						) : (
+							<Icons.google className='mr-2 h-4 w-4' />
+						)}{' '}
+						Gmail
+					</Button>
+					<Button
+						type='button'
+						disabled={isGitHubLoading || isGoogleLoading}
+						variant='ghost'
+						onClick={() => {
+							setIsGitHubLoading(true)
+							signIn('github')
+						}}
+					>
+						{isGitHubLoading ? (
+							<Icons.loader className='mr-2 h-4 w-4 animate-spin' />
+						) : (
+							<Icons.gitHub className='mr-2 h-4 w-4' />
+						)}{' '}
+						Github
+					</Button>
+				</div>
 			</div>
 		</div>
 	)
