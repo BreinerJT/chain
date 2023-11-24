@@ -16,13 +16,20 @@ import { api } from '@/utils/api'
 import { useToast } from '@/components/ui/use-toast'
 import { DashboardShell } from '@/components/DashboardShell'
 import { Icons } from '@/components/Icons'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 type NewLinkForm = z.infer<typeof CreateLinkSchema>
 
 export default function NewLinkPage() {
 	const router = useRouter()
 	const { toast } = useToast()
-	const { register, handleSubmit, setError, setValue } = useForm<NewLinkForm>({
+	const {
+		register,
+		handleSubmit,
+		setError,
+		setValue,
+		formState: { errors }
+	} = useForm<NewLinkForm>({
 		resolver: zodResolver(CreateLinkSchema)
 	})
 	const { mutate, isLoading } = api.link.create.useMutation({
@@ -37,12 +44,7 @@ export default function NewLinkPage() {
 		onError: () => {
 			setError('slug', {
 				type: 'manual',
-				message: 'Slug already exist.'
-			})
-			toast({
-				title: 'Oops!',
-				description: 'Looks like the slug already exist, try with another one.',
-				variant: 'destructive'
+				message: 'Looks like the slug already exist, try with another one.'
 			})
 		}
 	})
@@ -77,6 +79,13 @@ export default function NewLinkPage() {
 						id='url'
 						{...register('url')}
 					/>
+					{errors.url && (
+						<Alert variant='destructive'>
+							<Icons.alertCircle className='h-4 w-4' />
+							<AlertTitle>Error</AlertTitle>
+							<AlertDescription>{errors.url.message}</AlertDescription>
+						</Alert>
+					)}
 				</div>
 				<div className='grid gap-4'>
 					<Label htmlFor='slug'>Custom slug</Label>
@@ -105,6 +114,13 @@ export default function NewLinkPage() {
 							<Icons.random />
 						</Button>
 					</div>
+					{errors.slug && (
+						<Alert variant='destructive'>
+							<Icons.alertCircle className='h-4 w-4' />
+							<AlertTitle>Error</AlertTitle>
+							<AlertDescription>{errors.slug.message}</AlertDescription>
+						</Alert>
+					)}
 				</div>
 				<div className='grid gap-4'>
 					<Label htmlFor='description'>Description (Optional)</Label>
